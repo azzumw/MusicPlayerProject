@@ -7,6 +7,7 @@ package com.example.macintosh.musicplayerproject;
 public class Song {
     private String name;
     private String artistName;
+    private boolean isPlaying;
 
     public Song(String name, String artistName) {
         this.name = name;
@@ -19,5 +20,13 @@ public class Song {
 
     public String getArtistName() {
         return artistName;
+    }
+
+    public boolean isPlaying() {
+        return isPlaying;
+    }
+
+    public void setStatusSong(boolean isplaying){
+        this.isPlaying = isplaying;
     }
 }

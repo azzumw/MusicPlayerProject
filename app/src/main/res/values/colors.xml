@@ -2,5 +2,9 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#FB8C00</color>
+    <color name="playlist">#424242</color>
+    <color name="songs">#616161</color>
+    <color name="textColorLight">#FFB74D</color>
+    <color name="textColorDark">#FB8C00</color>
 </resources>

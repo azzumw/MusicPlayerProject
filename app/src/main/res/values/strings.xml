@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">azzuPlayer</string>
-    <string name="playlist">Playlists</string>
-    <string name="songs">Songs</string>
+    <string name="app_name">AwTunes</string>
+    <string name="playlist">PLAYLIST</string>
+    <string name="songs">SONGS</string>
 </resources>

@@ -8,13 +8,14 @@ public class Song {
     private String name;
     private String artistName;
     private boolean isPlaying;
+    private int songLength;
 
     public Song(String name, String artistName) {
         this.name = name;
         this.artistName = artistName;
     }
 
-    public String getName() {
+    public String getSongName() {
         return name;
     }
 

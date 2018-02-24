@@ -1,5 +1,6 @@
 package com.example.macintosh.musicplayerproject;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -44,12 +45,13 @@ public class SongListActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                releaseMediaPlayer();
+//                releaseMediaPlayer();
+                Intent intent = new Intent(SongListActivity.this,PlaySongActivity.class);
+                startActivity(intent);
+//                mediaPlayer = MediaPlayer.create(SongListActivity.this,songs.get(i).getAudioResourceID());
+//                mediaPlayer.start();
 
-                mediaPlayer = MediaPlayer.create(SongListActivity.this,songs.get(i).getAudioResourceID());
-                mediaPlayer.start();
-
-                mediaPlayer.setOnCompletionListener(onCompletionListener);
+//                mediaPlayer.setOnCompletionListener(onCompletionListener);
 
 
             }

@@ -9,10 +9,12 @@ public class Song {
     private String artistName;
     private boolean isPlaying;
     private int songLength;
+    private int audioResourceID;
 
-    public Song(String name, String artistName) {
+    public Song(String name, String artistName,int audioResourceID) {
         this.name = name;
         this.artistName = artistName;
+        this.audioResourceID = audioResourceID;
     }
 
     public String getSongName() {
@@ -21,6 +23,10 @@ public class Song {
 
     public String getArtistName() {
         return artistName;
+    }
+
+    public int getAudioResourceID() {
+        return audioResourceID;
     }
 
     public boolean isPlaying() {

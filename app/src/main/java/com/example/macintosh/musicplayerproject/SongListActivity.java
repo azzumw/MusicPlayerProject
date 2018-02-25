@@ -14,13 +14,7 @@ public class SongListActivity extends AppCompatActivity {
 
     private MediaPlayer mediaPlayer;
 
-    private MediaPlayer.OnCompletionListener onCompletionListener = new MediaPlayer.OnCompletionListener() {
-        @Override
-        public void onCompletion(MediaPlayer mediaPlayer) {
 
-            releaseMediaPlayer();
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

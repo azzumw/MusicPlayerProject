@@ -3,27 +3,41 @@ package com.example.macintosh.musicplayerproject;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class PlaySongActivity extends AppCompatActivity {
 
-    MediaPlayer mediaPlayer;
+    private MediaPlayer mediaPlayer;
 
-    private int forwardTime = 5000;
-    private int backwardTime = 5000;
-    private double startTime = 0;
-    private double finalTime = 0;
+    String songname, artist;
+    private ImageView playBtn;
+    private ImageView stopBtn;
+    private ImageView pauseBtn;
+    private int audiofile;
 
-    private Handler myHandler = new Handler();
-    public static int oneTimeOnly = 0;
+    private MediaPlayer.OnCompletionListener onCompletionListener = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mediaPlayer) {
+
+            releaseMediaPlayer();
+        }
+    };
+
+
 
     private SeekBar seekbar;
 
@@ -32,21 +46,22 @@ public class PlaySongActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_song);
-
+        Log.v("CREATE","Activity created");
         Bundle extras = getIntent().getExtras();
         if(extras == null) return;
 
-        String songname = extras.getString("SongName");
-        String artist = extras.getString("ArtistName");
-        final int audiofile= extras.getInt("audiofile");
+        songname = extras.getString("SongName");
+        artist = extras.getString("ArtistName");
+        audiofile = extras.getInt("audiofile");
+        mediaPlayer = MediaPlayer.create(PlaySongActivity.this,audiofile);
 
         seekbar = findViewById(R.id.seekbar);
         seekbar.setClickable(false);
 
 
-        ImageView playBtn = findViewById(R.id.playBtn);
-        ImageView stopBtn = findViewById(R.id.stopBtn);
-        final ImageView pauseBtn = findViewById(R.id.pauseBtn);
+        playBtn = findViewById(R.id.playBtn);
+        stopBtn = findViewById(R.id.stopBtn);
+        pauseBtn = findViewById(R.id.pauseBtn);
 
         TextView songTitle = findViewById(R.id.songnametxtViewAPS);
         TextView artistNameTV = findViewById(R.id.artistNameTextViewAPS);
@@ -55,52 +70,6 @@ public class PlaySongActivity extends AppCompatActivity {
         artistNameTV.setText(artist);
 
 
-
-        pauseBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                pause the media
-                mediaPlayer.pause();
-            }
-        });
-
-        playBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                play the media
-                if(mediaPlayer==null)
-                    mediaPlayer = MediaPlayer.create(PlaySongActivity.this,audiofile);
-
-
-                mediaPlayer.start();
-
-                finalTime = mediaPlayer.getDuration();
-                startTime = mediaPlayer.getCurrentPosition();
-
-                if (oneTimeOnly == 0) {
-                    seekbar.setMax((int) finalTime);
-                    oneTimeOnly = 1;
-                }
-
-                seekbar.setProgress((int)startTime);
-                myHandler.postDelayed(UpdateSongTime,100);
-//                pauseBtn.setEnabled(true);
-//                play.setEnabled(false);
-            }
-        });
-
-        stopBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //stop the media
-                mediaPlayer.stop();
-                try {
-                    mediaPlayer.prepare();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
 
     }
 
@@ -121,14 +90,73 @@ public class PlaySongActivity extends AppCompatActivity {
         }
     }
 
-    private Runnable UpdateSongTime = new Runnable() {
-        public void run() {
-            startTime = mediaPlayer.getCurrentPosition();
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        Log.v("OnPostResume", "Resume playback");
 
-            seekbar.setProgress((int)startTime);
-            myHandler.postDelayed(this, 100);
-        }
-    };
+        pauseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                pause the media
+                mediaPlayer.pause();
+            }
+        });
+
+        playBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                play the media
+
+
+                if(!mediaPlayer.isPlaying()) {
+                    mediaPlayer.start();
+
+                }
+
+                else{
+                    mediaPlayer.release();
+                    mediaPlayer = MediaPlayer.create(PlaySongActivity.this,audiofile);
+                    mediaPlayer.start();
+                }
+//
+                Snackbar.make(view, "Now Playing: "+ songname+ " by " + artist, Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+                mediaPlayer.setOnCompletionListener(onCompletionListener);
+            }
+        });
+
+        stopBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //stop the media
+                mediaPlayer.stop();
+                try {
+                    mediaPlayer.prepare();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+        @Override
+    protected void onPause() {
+        super.onPause();
+        Log.v("OnStop","Stopped playback");
+        releaseMediaPlayer();
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.v("STARTED","Playback start");
+
+        Toast.makeText(this, ""+(float)mediaPlayer.getDuration()/60000, Toast.LENGTH_SHORT).show();
+    }
+
+
 
 
 }

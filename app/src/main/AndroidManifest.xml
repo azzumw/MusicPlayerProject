@@ -18,17 +18,16 @@
         </activity>
         <activity
             android:name=".SongListActivity"
-            android:label="Songs" />
+            android:label="Songs"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".PlaySongActivity"
             android:label="Now Playing"
-            android:parentActivityName=".SongListActivity"/>
+            android:parentActivityName=".SongListActivity" />
         <activity
             android:name=".PlaylistActivity"
-            android:label="@string/playlist">
-
-        </activity>
-
+            android:label="@string/playlist"
+            android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>

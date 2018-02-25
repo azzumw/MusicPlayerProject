@@ -47,6 +47,9 @@ public class SongListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 //                releaseMediaPlayer();
                 Intent intent = new Intent(SongListActivity.this,PlaySongActivity.class);
+                intent.putExtra("SongName",songs.get(i).getSongName());
+                intent.putExtra("ArtistName",songs.get(i).getArtistName());
+                intent.putExtra("audiofile",songs.get(i).getAudioResourceID());
                 startActivity(intent);
 //                mediaPlayer = MediaPlayer.create(SongListActivity.this,songs.get(i).getAudioResourceID());
 //                mediaPlayer.start();

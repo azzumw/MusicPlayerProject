@@ -29,4 +29,8 @@ public class PlayList {
     public ArrayList<Song> getSongplaylist(){
         return songplaylist;
     }
+
+    public int getPlayListSize(){
+        return songplaylist.size();
+    }
 }

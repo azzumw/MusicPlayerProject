@@ -12,16 +12,15 @@ import java.util.ArrayList;
 
 public class SongListActivity extends AppCompatActivity {
 
-    private MediaPlayer mediaPlayer;
-
-
+    private ArrayList<Song> songs = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_list);
 
-        final ArrayList<Song> songs = new ArrayList<>();
+
 
         songs.add(new Song("The Way Of Tears","Muhammad Al Muqit",R.raw.thewayoftears));
         songs.add(new Song("Ya ilahi","Ishaq Ayubi",R.raw.yaillahi));
@@ -29,6 +28,8 @@ public class SongListActivity extends AppCompatActivity {
         songs.add(new Song("Tabalagho Bil Qaleel","Oussama Al-Safi",R.raw.tabalagho));
         songs.add(new Song("Ya Nabi Salaam Alaika","Mahir Zain",R.raw.yanabisalaam));
         songs.add(new Song("The Lightning","Muhammad Al Muqit",R.raw.lightning));
+        songs.add(new Song("Moon River","Chanelle/Bxjamin",R.raw.moonriver));
+        songs.add(new Song("La Isla Bonita","Madona",R.raw.laislabonita));
 
         SongAdapter<Song> itemsAdapter = new SongAdapter<Song>(this,songs);
 
@@ -45,30 +46,13 @@ public class SongListActivity extends AppCompatActivity {
                 intent.putExtra("ArtistName",songs.get(i).getArtistName());
                 intent.putExtra("audiofile",songs.get(i).getAudioResourceID());
                 startActivity(intent);
-//                mediaPlayer = MediaPlayer.create(SongListActivity.this,songs.get(i).getAudioResourceID());
-//                mediaPlayer.start();
-
-//                mediaPlayer.setOnCompletionListener(onCompletionListener);
-
 
             }
         });
     }
 
-    private void releaseMediaPlayer() {
-        // If the media player is not null, then it may be currently playing a sound.
-        if (mediaPlayer != null) {
-            // Regardless of the current state of the media player, release its resources
-            // because we no longer need it.
-            mediaPlayer.release();
-
-            // Set the media player back to null. For our code, we've decided that
-            // setting the media player to null is an easy way to tell that the media player
-            // is not configured to play an audio file at the moment.
-            mediaPlayer = null;
-
-//            am.abandonAudioFocus(afChangeListener);
-
-        }
+    public Song getSong(int i){
+        return songs.get(i);
     }
+
 }

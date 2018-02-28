@@ -3,4 +3,5 @@
     <string name="playlist">PLAYLIST</string>
     <string name="songs">SONGS</string>
     <string name="title_activity_main2">PlayListActivity</string>
+    <string name="title_activity_child_playlist">ChildPlaylistActivity</string>
 </resources>

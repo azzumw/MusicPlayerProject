@@ -19,7 +19,7 @@ import java.util.List;
 
 public class SongAdapter<S> extends ArrayAdapter<Song> {
 
-    public SongAdapter(@NonNull Context context, @NonNull ArrayList<Song> objects) {
+    public SongAdapter(@NonNull Context context, @NonNull List<Song> objects) {
         super(context, 0, objects);
     }
 

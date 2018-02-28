@@ -26,7 +26,7 @@ public class MusicPlayerApplication extends Application {
         Song wayOfTearsSong = new Song("The Way Of Tears", "Muhammad Al Muqit", R.raw.thewayoftears);
         Song yaIlahiSong = new Song("Ya ilahi", "Ishaq Ayubi", R.raw.yaillahi);
         Song soldiersOfAllah = new Song("Soldiers of Allah", "Muhammad Al Muqit", R.raw.soldiersofallah);
-        new Song("Tabalagho Bil Qaleel", "Oussama Al-Safi", R.raw.tabalagho);
+        Song tabalagho = new Song("Tabalagho Bil Qaleel", "Oussama Al-Safi", R.raw.tabalagho);
         Song yanabi = new Song("Ya Nabi Salaam Alaika", "Mahir Zain", R.raw.yanabisalaam);
         Song lightning =new Song("The Lightning", "Muhammad Al Muqit", R.raw.lightning);
         Song laislabonita = new Song("La Isla Bonita","Madona",R.raw.laislabonita);
@@ -36,7 +36,7 @@ public class MusicPlayerApplication extends Application {
         playlistMap.put("Mahir Zain", new PlayList("Mahir Zain",Arrays.asList(yanabi)));
         playlistMap.put("Madona", new PlayList("Madona",Arrays.asList(laislabonita)));
         playlistMap.put("Chanelle/Bxjamin", new PlayList("Chanelle/Bxjamin",Arrays.asList(moonriver)));
-        playlistMap.put("Lionel Richie", new PlayList("Lionel Richie"));
+        playlistMap.put("Oussama Al-Safi", new PlayList("Oussama Al-Safi",Arrays.asList(tabalagho)));
     }
 
     public Map<String, PlayList> getPlaylistMap() {

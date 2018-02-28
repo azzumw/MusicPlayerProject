@@ -20,8 +20,7 @@ public class ChildPlaylistActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playlist);
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+
 
         String playlistName = getIntent().getStringExtra("PlaylistName");
 
@@ -30,11 +29,6 @@ public class ChildPlaylistActivity extends AppCompatActivity {
 
         final List<Song> playlistSongs = playList.getSongplaylist();
 
-
-
-//            playlistSongs.add(playlistActivity.getPlaylistObject(0).getSong(0));
-//            playlistSongs.add(playlistActivity.getPlaylistObject(0).getSong(2));
-//            playlistSongs.add(playlistActivity.getPlaylistObject(0).getSong(5));
 
         SongAdapter<Song> itemsAdapter = new SongAdapter<>(ChildPlaylistActivity.this,playlistSongs);
 
@@ -56,7 +50,7 @@ public class ChildPlaylistActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Not yet implemented", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });

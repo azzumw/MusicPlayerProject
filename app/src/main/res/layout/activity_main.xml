@@ -3,33 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#212121"
     android:orientation="vertical"
     tools:context="com.example.macintosh.musicplayerproject.MainActivity">
 
-    <FrameLayout
+    <android.support.design.widget.TabLayout
+        android:id="@+id/sliding_tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/playlist">
+        android:background="@color/songs"
+        app:tabMode="fixed" />
 
-        <TextView
-            android:id="@+id/playlistTextView"
-            style="@style/CategoryStyle"
-            android:text="@string/playlist"
-            android:background="?attr/selectableItemBackground" />
-        <!--android:background="@color/category_numbers"-->
-
-    </FrameLayout>
-
-    <FrameLayout
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/songs">
-        <TextView
-            android:id="@+id/songTextView"
-            style="@style/CategoryStyle"
-            android:background="?attr/selectableItemBackground"
-            android:text="@string/songs" />
-    </FrameLayout>
+        android:layout_height="match_parent" />
 
 </LinearLayout>
